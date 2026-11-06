@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f0">
+  <meta name="description" content="Zaynix Digital Solutions builds thoughtful digital experiences, brands, and technology for ambitious businesses.">
+  <title>Zaynix Digital Solutions — Make your next move matter</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f5f5f0;
+      --ink: #171b19;
+      --muted: #696e68;
+      --green: #c9f36b;
+      --line: rgba(23, 27, 25, .14);
+      --display: "Arial", "Helvetica Neue", sans-serif;
+      --body: "Arial", "Helvetica Neue", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    .wrap { width: min(1200px, calc(100% - 64px)); margin-inline: auto; }
+
+    .topbar {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 84px;
+      border-bottom: 1px solid var(--line);
+    }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 15px; font-weight: 800; letter-spacing: -.045em; }
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--ink);
+      color: var(--green);
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -.1em;
+      padding-right: 3px;
+    }
+    .brand small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; }
+    .nav { display: flex; align-items: center; gap: 34px; }
+    .nav a { font-size: 12px; font-weight: 650; transition: opacity .2s ease; }
+    .nav a:hover { opacity: .58; }
+    .nav .nav-cta { padding: 13px 18px; border: 1px solid var(--ink); border-radius: 999px; }
+    .menu-toggle { display: none; border: 0; background: none; color: var(--ink); font-size: 14px; cursor: pointer; }
+
+    .hero { display: grid; grid-template-columns: 1.08fr .92fr; align-items: center; min-height: 690px; padding-block: 70px 82px; gap: 44px; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 24px; color: var(--muted); font-size: 10px; font-weight: 750; letter-spacing: .16em; text-transform: uppercase; }
+    .eyebrow::before { width: 24px; height: 1px; background: currentColor; content: ""; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { max-width: 700px; margin-bottom: 25px; font-family: var(--display); font-size: clamp(56px, 7.7vw, 102px); font-weight: 650; line-height: .94; letter-spacing: -.085em; }
+    h1 .accent { color: #777f69; font-family: Georgia, serif; font-weight: 400; font-style: italic; letter-spacing: -.09em; }
+    .hero-copy { max-width: 430px; margin-bottom: 30px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+    .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 18px; padding: 0 20px; border: 1px solid var(--ink); border-radius: 99px; font-size: 12px; font-weight: 700; transition: transform .2s ease, background .2s ease; }
+    .button:hover { transform: translateY(-2px); }
+    .button-dark { background: var(--ink); color: white; }
+    .button-dark:hover { background: #353a36; }
+    .button-light:hover { background: white; }
+    .arrow { font-size: 16px; line-height: 1; }
+
+    .hero-art {
+      position: relative;
+      display: grid;
+      min-height: 480px;
+      overflow: hidden;
+      place-items: center;
+      border-radius: 4px;
+      background: #dce5d2;
+      isolation: isolate;
+    }
+    .hero-art::before, .hero-art::after { position: absolute; z-index: -1; border-radius: 50%; content: ""; }
+    .hero-art::before { width: 390px; height: 390px; background: #bbd5a5; transform: translate(-45px, 32px); }
+    .hero-art::after { width: 300px; height: 300px; border: 1px solid rgba(23, 27, 25, .2); transform: translate(62px, -38px); }
+    .orbit { position: absolute; width: 360px; height: 360px; border: 1px solid rgba(23, 27, 25, .25); border-radius: 50%; transform: rotate(-35deg) scaleY(.42); }
+    .orbit::after { position: absolute; top: 50%; right: 3px; width: 13px; height: 13px; border-radius: 50%; background: var(--ink); content: ""; }
+    .orb-core { display: grid; width: 175px; height: 175px; place-items: center; border-radius: 50%; background: var(--green); box-shadow: 0 25px 70px rgba(48, 64, 42, .16); }
+    .orb-core span { font-size: 84px; font-weight: 800; letter-spacing: -.14em; transform: translateX(-6px); }
+    .art-label { position: absolute; right: 25px; bottom: 23px; left: 25px; display: flex; justify-content: space-between; font-size: 9px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    .art-index { position: absolute; top: 24px; left: 25px; font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .hero-note { position: absolute; top: 46px; right: 25px; max-width: 125px; color: #525c4d; font-size: 11px; line-height: 1.5; text-align: right; }
+
+    .ticker { overflow: hidden; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .ticker-track { display: flex; width: max-content; align-items: center; gap: 28px; padding: 20px 0; animation: drift 35s linear infinite; }
+    .ticker span { font-size: 10px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+    .ticker .star { color: #7d8f57; font-size: 17px; }
+    @keyframes drift { to { transform: translateX(-50%); } }
+
+    .section { padding-block: 116px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 52px; }
+    .section-heading h2 { max-width: 600px; margin-bottom: 0; font-size: clamp(38px, 5vw, 64px); font-weight: 600; line-height: .99; letter-spacing: -.075em; }
+    .section-heading p { max-width: 285px; margin-bottom: 4px; color: var(--muted); font-size: 13px; line-height: 1.75; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 13px; }
+    .service-card { min-height: 250px; padding: 25px; border: 1px solid var(--line); transition: background .2s ease, transform .2s ease; }
+    .service-card:hover { background: white; transform: translateY(-4px); }
+    .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 66px; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .08em; }
+    .service-icon { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--line); border-radius: 50%; color: var(--ink); font-size: 17px; }
+    .service-card h3 { margin-bottom: 9px; font-size: 20px; font-weight: 650; letter-spacing: -.055em; }
+    .service-card p { max-width: 290px; margin-bottom: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+
+    .statement { background: var(--ink); color: var(--paper); }
+    .statement-inner { display: grid; grid-template-columns: .65fr 1.35fr; gap: 60px; padding-block: 100px; }
+    .statement .eyebrow { color: #a9b69a; }
+    .statement h2 { max-width: 800px; margin-bottom: 28px; font-size: clamp(36px, 5.3vw, 67px); font-weight: 500; line-height: 1.02; letter-spacing: -.075em; }
+    .statement h2 em { color: var(--green); font-family: Georgia, serif; font-weight: 400; }
+    .statement p { max-width: 500px; margin-bottom: 0; color: #aeb3ac; font-size: 13px; line-height: 1.8; }
+    .statement-mark { display: grid; width: 54px; height: 54px; margin-top: 15px; place-items: center; border: 1px solid rgba(255,255,255,.32); border-radius: 50%; color: var(--green); font-size: 23px; }
+
+    .founders { padding-bottom: 126px; }
+    .founders .section-heading { margin-bottom: 45px; }
+    .founder-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .founder-card { display: grid; grid-template-columns: .9fr 1.1fr; min-height: 330px; border: 1px solid var(--line); }
+    .founder-photo {
+      position: relative;
+      display: grid;
+      min-height: 330px;
+      overflow: hidden;
+      place-items: center;
+      background: #dce5d2;
+    }
+    .founder-card:nth-child(2) .founder-photo { background: #e9ded1; }
+    .founder-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 38%; }
+    .founder-info { display: flex; flex-direction: column; justify-content: space-between; padding: 25px; }
+    .founder-number { color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .12em; }
+    .founder-info h3 { margin: 25px 0 9px; font-size: clamp(19px, 2vw, 26px); font-weight: 650; line-height: 1.1; letter-spacing: -.065em; }
+    .founder-title { margin-bottom: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+    .founder-info .founder-bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 30px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .founder-bottom span:last-child { color: var(--ink); font-size: 15px; }
+
+    .contact { padding-block: 77px; background: var(--green); }
+    .contact-inner { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+    .contact h2 { margin: 0; font-size: clamp(34px, 5vw, 58px); font-weight: 600; line-height: .98; letter-spacing: -.075em; }
+    .contact p { margin: 9px 0 0; color: #48533d; font-size: 12px; }
+    .contact-details { display: flex; flex-wrap: wrap; gap: 27px 48px; margin-top: 30px; }
+    .contact-detail { display: grid; align-content: start; gap: 9px; }
+    .contact-label { color: #48533d; font-size: 9px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    .contact-value { max-width: 370px; font-size: 12px; font-weight: 650; line-height: 1.7; }
+    .contact-value:hover { text-decoration: underline; text-underline-offset: 3px; }
+    .contact .button { flex: 0 0 auto; border-color: var(--ink); background: var(--ink); color: white; }
+
+    footer { padding-block: 25px; background: var(--ink); color: white; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    footer .brand { font-size: 13px; }
+    footer .brand-mark { width: 28px; height: 28px; background: var(--green); color: var(--ink); font-size: 14px; }
+    .copyright { color: #aeb3ac; font-size: 10px; }
+    .back-top { color: var(--green); font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+
+    @media (max-width: 800px) {
+      .wrap { width: min(100% - 40px, 620px); }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding-block: 72px 58px; gap: 42px; }
+      .hero-art { min-height: 390px; }
+      .section { padding-block: 82px; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .service-card:last-child { grid-column: span 2; }
+      .statement-inner { grid-template-columns: 1fr; gap: 25px; padding-block: 75px; }
+      .statement-mark { margin-top: 0; }
+      .founder-grid { grid-template-columns: 1fr; }
+      .founder-card { grid-template-columns: .9fr 1.1fr; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: calc(100% - 36px); }
+      .topbar { min-height: 72px; }
+      .menu-toggle { display: block; }
+      .nav {
+        position: absolute;
+        top: calc(100% + 1px);
+        right: 0;
+        left: 0;
+        display: none;
+        align-items: stretch;
+        gap: 0;
+        padding: 9px 18px 17px;
+        border-bottom: 1px solid var(--line);
+        background: var(--paper);
+      }
+      .nav.is-open { display: flex; flex-direction: column; }
+      .nav a { padding: 13px 0; }
+      .nav .nav-cta { margin-top: 6px; padding: 13px 16px; text-align: center; }
+      h1 { font-size: clamp(54px, 15vw, 80px); }
+      .hero { padding-top: 58px; }
+      .hero-art { min-height: 330px; }
+      .hero-art::before { width: 300px; height: 300px; }
+      .hero-art::after { width: 240px; height: 240px; }
+      .orbit { width: 290px; height: 290px; }
+      .orb-core { width: 140px; height: 140px; }
+      .orb-core span { font-size: 68px; }
+      .section-heading { align-items: start; flex-direction: column; margin-bottom: 32px; }
+      .section-heading p { max-width: 350px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card:last-child { grid-column: auto; }
+      .service-card { min-height: 210px; }
+      .service-top { margin-bottom: 45px; }
+      .founder-card { grid-template-columns: 1fr; }
+      .founder-photo { min-height: 270px; }
+      .founder-info { min-height: 205px; }
+      .contact-inner { align-items: flex-start; flex-direction: column; }
+      .footer-inner { align-items: flex-start; flex-wrap: wrap; }
+      .copyright { order: 3; width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar wrap">
+    <a class="brand" href="#home" aria-label="Zaynix Digital Solutions home">
+      <span class="brand-mark">Z</span>
+      <span>Zaynix<small>Digital solutions</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu <span aria-hidden="true">+</span></button>
+    <nav class="nav" id="primary-nav" aria-label="Main navigation">
+      <a href="#services">What we do</a>
+      <a href="#approach">Our approach</a>
+      <a href="#founders">Founders</a>
+      <a class="nav-cta" href="#contact">Start a conversation <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" id="home">
+      <div>
+        <p class="eyebrow">Independent digital studio</p>
+        <h1>Make your next move <span class="accent">matter.</span></h1>
+        <p class="hero-copy">We bring strategy, design and technology together to help ambitious businesses move forward with clarity.</p>
+        <div class="actions">
+          <a class="button button-dark" href="#services">Explore what we do <span class="arrow" aria-hidden="true">↗</span></a>
+          <a class="button button-light" href="#founders">Meet the founders</a>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Abstract Zaynix brand illustration">
+        <span class="art-index">ZS—001</span>
+        <p class="hero-note">Good ideas deserve a digital home that feels like them.</p>
+        <div class="orbit" aria-hidden="true"></div>
+        <div class="orb-core" aria-hidden="true"><span>Z.</span></div>
+        <div class="art-label"><span>Ideas into impact</span><span>Digital, thoughtfully</span></div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Our capabilities">
+      <div class="ticker-track" aria-hidden="true">
+        <span>Strategy</span><span class="star">✳</span><span>Design</span><span class="star">✳</span><span>Development</span><span class="star">✳</span><span>Digital growth</span><span class="star">✳</span><span>Strategy</span><span class="star">✳</span><span>Design</span><span class="star">✳</span><span>Development</span><span class="star">✳</span><span>Digital growth</span><span class="star">✳</span>
+      </div>
+    </div>
+
+    <section class="section wrap" id="services">
+      <div class="section-heading">
+        <div><p class="eyebrow">What we do</p><h2>Small details.<br>Big-picture thinking.</h2></div>
+        <p>From the first idea to the final pixel, we make digital work feel purposeful, useful and unmistakably yours.</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card">
+          <div class="service-top"><span>01 — Direction</span><span class="service-icon" aria-hidden="true">↗</span></div>
+          <h3>Strategy & identity</h3>
+          <p>Find your focus, sharpen your story and build a brand people remember.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-top"><span>02 — Experience</span><span class="service-icon" aria-hidden="true">✳</span></div>
+          <h3>Web & digital design</h3>
+          <p>Thoughtful websites and interfaces that make the right first impression.</p>
+        </article>
+        <article class="service-card">
+          <div class="service-top"><span>03 — Technology</span><span class="service-icon" aria-hidden="true">⌘</span></div>
+          <h3>Development & growth</h3>
+          <p>Reliable digital foundations built to work beautifully and grow with you.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="statement" id="approach">
+      <div class="statement-inner wrap">
+        <div><p class="eyebrow">The Zaynix point of view</p><span class="statement-mark" aria-hidden="true">✳</span></div>
+        <div>
+          <h2>Digital should feel less like a checkbox and more like your <em>next big idea.</em></h2>
+          <p>We work closely with you, ask the useful questions and keep the process clear from day one. The result: a digital presence shaped around your goals, your people and where you want to go next.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section founders wrap" id="founders">
+      <div class="section-heading">
+        <div><p class="eyebrow">The people behind it</p><h2>Meet your people.</h2></div>
+        <p>Good work starts with good people. Get to know the founders building Zaynix Digital Solutions.</p>
+      </div>
+      <div class="founder-grid">
+        <article class="founder-card">
+          <div class="founder-photo">
+            <img src="images/shaik-nizam-ali.jpg" alt="Shaik Nizam Ali, founder of Zaynix Digital Solutions" loading="lazy" decoding="async">
+          </div>
+          <div class="founder-info">
+            <span class="founder-number">FOUNDER — 01</span>
+            <div><h3>Shaik Nizam Ali</h3><p class="founder-title">Founder<br>Zaynix Digital Solutions</p></div>
+            <div class="founder-bottom"><span>Building what’s next</span><span aria-hidden="true">↗</span></div>
+          </div>
+        </article>
+        <article class="founder-card">
+          <div class="founder-photo">
+            <img src="images/shahana-parveen.jpg" alt="Shahana Parveen, founder of Zaynix Digital Solutions" loading="lazy" decoding="async">
+          </div>
+          <div class="founder-info">
+            <span class="founder-number">FOUNDER — 02</span>
+            <div><h3>Shahana Parveen</h3><p class="founder-title">Founder<br>Zaynix Digital Solutions</p></div>
+            <div class="founder-bottom"><span>Building what’s next</span><span aria-hidden="true">↗</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-inner wrap">
+        <div>
+          <h2>Ready for a better<br>kind of digital?</h2>
+          <p>Tell us what you’re imagining. Let’s make it real.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <span class="contact-label">Call us</span>
+              <a class="contact-value" href="tel:+919066564573">+91 90665 64573</a>
+            </div>
+            <div class="contact-detail">
+              <span class="contact-label">Visit us</span>
+              <a class="contact-value" href="https://www.google.com/maps/search/?api=1&amp;query=Flat%20no%20201%2C%203rd%20floor%2C%20above%20Indian%20Overseas%20Bank%2C%20KPR%20Colony%2C%20Puppalaguda%20Main%20Road%2C%20Manikonda%2C%20Hyderabad%20500089" target="_blank" rel="noopener noreferrer">
+                Flat no 201, 3rd floor, above Indian Overseas Bank,<br>
+                KPR Colony, Puppalaguda Main Road, Manikonda,<br>
+                Hyderabad - 500089
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="button" href="#founders">Meet the people behind Zaynix <span class="arrow" aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner wrap">
+      <a class="brand" href="#home"><span class="brand-mark">Z</span><span>Zaynix<small>Digital solutions</small></span></a>
+      <span class="copyright">© <span id="year"></span> Zaynix Digital Solutions. Made with intention.</span>
+      <a class="back-top" href="#home">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector(".nav");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      navigation.classList.toggle("is-open", !isOpen);
+    });
+
+    navigation.addEventListener("click", (event) => {
+      if (event.target.closest("a")) {
+        menuButton.setAttribute("aria-expanded", "false");
+        navigation.classList.remove("is-open");
+      }
+    });
+
+    document.querySelector("#year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
